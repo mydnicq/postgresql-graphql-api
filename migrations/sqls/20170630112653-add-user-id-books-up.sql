@@ -1,0 +1,1 @@
+ALTER TABLE books ADD COLUMN user_id INTEGER REFERENCES users;

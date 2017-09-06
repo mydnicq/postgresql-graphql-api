@@ -1,0 +1,6 @@
+CREATE TABLE books (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR,
+	created_at TIMESTAMPTZ,
+	updated_at TIMESTAMPTZ
+);

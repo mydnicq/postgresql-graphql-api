@@ -1,0 +1,19 @@
+{
+  "development": {
+    "driver": "pg",
+    "user": "playground",
+    "password": "",
+    "host": "localhost",
+    "database": "playground",
+    "port": 5432
+  },
+  "production": {
+    "driver": "pg",
+    "user": { "ENV": "DB_USER_NAME" },
+    "password": { "ENV": "DB_PASSWORD" },
+    "host": { "ENV": "DB_HOST" },
+    "database": { "ENV": "DB_NAME" },
+    "port": { "ENV": "DB_PORT" }
+  },
+  "sql-file": true
+}
