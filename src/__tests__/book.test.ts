@@ -1,6 +1,5 @@
 import App from "../app";
 import { graphql } from "graphql";
-import { UserInput as IUserInput } from "../schema/types";
 
 let appInstance: App;
 
@@ -38,7 +37,7 @@ describe("Testing Query - 'Users'", () => {
 });
 
 describe("Testing Query - 'User'", () => {
-  test("Should get a user", async () => {
+  test("Should get a userr", async () => {
     const query = `
       query user {
         user(user_id: 1) {
@@ -63,32 +62,5 @@ describe("Testing Query - 'User'", () => {
         books: expect.any(Array)
       }
     });
-  });
-});
-
-describe("Testing Mutation - 'createUser'", () => {
-  test("Should get a new user", async () => {
-    const query = `
-      mutation createUser($input: UserInput) {
-        user: createUser(input: $input) {
-          name id
-        }
-      }
-    `;
-
-    const { data } = await graphql(
-      appInstance.graphqlSchema,
-      query,
-      {},
-      appInstance.ctx,
-      {
-        input: {
-          name: "Test"
-        } as IUserInput
-      }
-    );
-
-    expect(data.user.name).toBe("Test");
-    await appInstance.ctx.db.users.destroy(data.user.id);
   });
 });

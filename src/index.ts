@@ -1,9 +1,9 @@
-import App from "./app";
-import Server from "./server";
+// import "reflect-metadata";
+// import { container } from "./ioc";
+import { CreateApp } from "./core";
+
 (async () => {
-  const appInstance = await new App().start();
-  const http = await new Server(appInstance).start();
-  console.log(http);
+  await CreateApp.start();
 })().catch(err => {
   console.error("ERROR:", err);
 });

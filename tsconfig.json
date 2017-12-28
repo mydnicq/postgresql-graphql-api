@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "watch": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "suppressExcessPropertyErrors": true
+    // "lib": ["es6"],
+    // "types": ["reflect-metadata"],
+    // "moduleResolution": "node"
+    // "noImplicitAny": true
   },
-  // "include": [
-  //   "./**/*.ts"
-  // ],
-  "exclude": [
-    "node_modules",
-    "migrations"
-  ]
+  "exclude": ["node_modules", "migrations"]
 }

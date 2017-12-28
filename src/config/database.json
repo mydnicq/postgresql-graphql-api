@@ -5,6 +5,15 @@
     "password": "",
     "host": "localhost",
     "database": "playground",
+    "port": 5432,
+    "monitorSql": true
+  },
+  "test": {
+    "driver": "pg",
+    "user": "playground",
+    "password": "",
+    "host": "localhost",
+    "database": "playground",
     "port": 5432
   },
   "production": {

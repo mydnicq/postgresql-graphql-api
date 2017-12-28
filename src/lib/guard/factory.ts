@@ -34,7 +34,8 @@ export default function(operation, roles, viewerIdKey, originalFn, target) {
 
     if (roles.includes(Roles.Owner)) {
       if (
-        (obj && typeof obj[viewerIdKey] === "undefined") ||
+        obj &&
+        typeof obj[viewerIdKey] === "undefined" &&
         typeof args[viewerIdKey] === "undefined"
       ) {
         errorMessage = `to get this value, you need to provide viewerId key '${viewerIdKey}'`;
