@@ -13,7 +13,7 @@ export class CreateApp {
     return this;
   }
 
-  public stop(): void {
+  public static stop(): void {
     Database.destroyInstance();
     RedisClient.destroyInstance();
     Server.stop();

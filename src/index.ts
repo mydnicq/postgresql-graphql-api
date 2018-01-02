@@ -1,5 +1,4 @@
-// import "reflect-metadata";
-// import { container } from "./ioc";
+import "reflect-metadata";
 import { CreateApp } from "./core";
 
 (async () => {

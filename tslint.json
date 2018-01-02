@@ -1,17 +1,13 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint-config-standard",
-        "tslint-config-prettier"
-    ],
-    "jsRules": {},
-    "rules": {
-        "object-literal-sort-keys": false,
-        "trailing-comma": [false],
-        "variable-name": [
-            false
-        ],
-        "no-string-literal": false
-    },
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": ["tslint-config-standard", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "object-literal-sort-keys": false,
+    "trailing-comma": [false],
+    "variable-name": [false],
+    "no-string-literal": false,
+    "member-ordering": [false, { "order": "fields-first" }]
+  },
+  "rulesDirectory": []
 }

@@ -1,48 +1,39 @@
-import * as path from "path";
-import glob = require("glob");
-import deepmerge = require("deepmerge");
-import { GraphQLSchema, GraphQLObjectType } from "graphql";
+import { GraphQLObjectType, GraphQLSchema } from "graphql";
+
+import { UserQuery, UsersQuery } from "./user/queries";
+import { CreateUserMutation } from "./user/mutations";
 
 export class SchemaBuilder {
-  private static _schema: GraphQLSchema;
+  private static instance: SchemaBuilder;
+
+  private rootQuery: GraphQLObjectType = new GraphQLObjectType({
+    name: "Query",
+    fields: {
+      user: new UserQuery(),
+      users: new UsersQuery()
+    }
+  });
+
+  private rootMutation: GraphQLObjectType = new GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+      createUser: new CreateUserMutation()
+    }
+  });
+
+  private schema: GraphQLSchema = new GraphQLSchema({
+    query: this.rootQuery,
+    mutation: this.rootMutation
+  });
 
   public static async make(): Promise<GraphQLSchema> {
-    let files: string[] = await this._getShemaFiles();
-    let queryMap = files
-      .map(file => require(file).queryType)
-      .filter(f => f)
-      .reduce((a, b) => {
-        return deepmerge(a, b);
-      }, {});
-    let mutationMap = files
-      .map(file => require(file).mutationType)
-      .filter(f => f)
-      .reduce((a, b) => {
-        return deepmerge(a, b);
-      }, {});
-    this._schema = new GraphQLSchema({
-      query: new GraphQLObjectType(queryMap),
-      mutation: new GraphQLObjectType(mutationMap)
-    });
-    return this._schema;
+    return this.getSchema();
   }
 
-  public static getSchema() {
-    return this._schema;
-  }
-
-  private static async _getShemaFiles(): Promise<any> {
-    let pattern = path.resolve(__dirname, "./**/*.ts");
-    return await new Promise<string[]>((resolve, reject) => {
-      glob(pattern, { ignore: ["**/*.d.ts"] }, (err, files) => {
-        if (err || files.length === 0) {
-          reject(err);
-        } else {
-          resolve(files);
-        }
-      });
-    }).catch(e => {
-      throw new Error("Cannot find schema files.");
-    });
+  public static getSchema(): GraphQLSchema {
+    if (!SchemaBuilder.instance) {
+      SchemaBuilder.instance = new SchemaBuilder();
+    }
+    return SchemaBuilder.instance.schema;
   }
 }

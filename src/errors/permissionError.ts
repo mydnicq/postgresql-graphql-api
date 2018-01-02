@@ -1,10 +1,10 @@
-import { GraphQLError } from 'graphql'
+import { GraphQLError } from "graphql";
 
-export default class PermissionError extends GraphQLError {
-  code: number
+export class PermissionError extends GraphQLError {
+  code: number;
 
-  constructor (message) {
-    super(message)
-    this.code = 403
+  constructor(message) {
+    super(message);
+    this.code = 403;
   }
 }
