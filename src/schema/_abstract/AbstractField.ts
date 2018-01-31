@@ -1,5 +1,5 @@
 // import { TYPES, lazyInject, injectable } from "../../../ioc";
-import * as I from "../../../interfaces";
+// import * as I from "../../../interfaces";
 import {
   GraphQLID,
   GraphQLFieldConfig,
